@@ -1,6 +1,9 @@
 MOVE_DISTANCE = 20
+STARTING_POSITION = [(0,0), (-20,0), (-40,0)]
 from turtle import Turtle
 import time
+
+
 class Snake:
     def __init__(self):
         self.body = []
@@ -10,14 +13,22 @@ class Snake:
 
 
     def create_snake(self):
-        for x in range(3):
-            y = [-20, 0, 20]
-            turtle = Turtle("square")
-            turtle.color("white")
-            turtle.speed("fastest")
-            turtle.penup()
-            turtle.goto(y[x], 0)
-            self.body.append(turtle)
+        for position in STARTING_POSITION:
+            self.add_body(position)
+
+    def add_body(self, position):
+        turtle = Turtle("square")
+        turtle.color("white")
+        turtle.speed("fastest")
+        turtle.penup()
+        turtle.goto(position)
+        self.body.append(turtle)
+
+
+    def extend(self):
+        self.add_body(self.body[-1].position())
+
+
 
     def move(self):
         for num in range(len(self.body) - 1, 0, -1):
