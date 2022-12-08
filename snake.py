@@ -1,4 +1,4 @@
-MOVE_DISTANCE = 20
+MOVE_DISTANCE = 15
 STARTING_POSITION = [(0,0), (-20,0), (-40,0)]
 from turtle import Turtle
 import time
@@ -28,6 +28,13 @@ class Snake:
     def extend(self):
         self.add_body(self.body[-1].position())
 
+
+    def reset(self):
+        for b in self.body:
+            b.goto(1000,1000)
+        self.body.clear()
+        self.create_snake()
+        self.head = self.body[0]
 
 
     def move(self):
